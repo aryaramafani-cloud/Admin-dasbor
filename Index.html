@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexAdmin — TikTok Marketplace Dashboard</title>
+    <style>
+        :root {
+            --bg-void: #060810; --bg-deep: #0b0f1a; --bg-card: #0f1422;
+            --accent-cyan: #00e5ff; --accent-pink: #ff3b8b; --accent-green: #00e676;
+            --text-primary: #eef0f7; --text-secondary: #7a84a0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-void); font-family: sans-serif; color: var(--text-primary); }
+        
+        /* Mobile Layout */
+        .layout { display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: var(--bg-deep); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .main { padding: 15px; flex: 1; }
+        
+        /* Cards */
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        .kpi-card { background: var(--bg-card); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .kpi-val { font-size: 20px; font-weight: bold; color: var(--accent-cyan); margin: 5px 0; }
+        .kpi-label { font-size: 11px; color: var(--text-secondary); }
+
+        /* Real-time Indicator */
+        .live-dot { width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; display: inline-block; margin-right: 5px; box-shadow: 0 0 10px var(--accent-green); }
+        
+        .status-active { color: var(--accent-green); font-size: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <header>
+            <div><strong>NexAdmin</strong></div>
+            <div class="status-active"><span class="live-dot"></span>LIVE MONITOR</div>
+        </header>
+        <main class="main">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Views</div>
+                    <div class="kpi-val" id="v-count">4,200,000</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Revenue</div>
+                    <div class="kpi-val" id="r-count" style="color:var(--accent-pink)">Rp 28.4jt</div>
+                </div>
+            </div>
+
+            <div style="background:var(--bg-card); padding:15px; border-radius:12px;">
+                <h4>Monitoring Akun</h4>
+                <p style="font-size:12px; color:var(--text-secondary); margin-top:10px;">@tokobaju_official &bull; Status: Aktif</p>
+                <p style="font-size:12px; color:var(--text-secondary);">@beautystore.id &bull; Status: Aktif</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simulasi Real-time Update
+        setInterval(() => {
+            let v = document.getElementById('v-count');
+            let current = parseInt(v.innerText.replace(/,/g, ''));
+            v.innerText = (current + Math.floor(Math.random() * 10)).toLocaleString();
+        }, 2000);
+    </script>
+</body>
+</html>
